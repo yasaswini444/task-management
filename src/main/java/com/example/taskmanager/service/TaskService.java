@@ -37,9 +37,14 @@ public class TaskService {
                                 "Task not found with ID: " + id
                         ));
 
+        // Update basic task details
         existingTask.setTitle(updatedTask.getTitle());
         existingTask.setDescription(updatedTask.getDescription());
         existingTask.setStatus(updatedTask.getStatus());
+
+        // Update priority and due date
+        existingTask.setPriority(updatedTask.getPriority());
+        existingTask.setDueDate(updatedTask.getDueDate());
 
         return taskRepository.save(existingTask);
     }

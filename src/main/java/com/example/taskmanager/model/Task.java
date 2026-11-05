@@ -1,9 +1,15 @@
 
 package com.example.taskmanager.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tasks")
@@ -20,22 +26,19 @@ public class Task {
     @Size(max = 500, message = "Description cannot exceed 500 characters")
     private String description;
 
-    @Enumerated(EnumType.STRING)
     private TaskStatus status = TaskStatus.PENDING;
 
-    // Default constructor
-    public Task() {
-    }
+    private String priority;
 
-    // Parameterized constructor
-    public Task(String title, String description) {
-        this.title = title;
-        this.description = description;
-        this.status = TaskStatus.PENDING;
-    }
+    private LocalDate dueDate;
+public Task() {
+}
 
-    // Getters and Setters
-
+public Task(String title, String description) {
+    this.title = title;
+    this.description = description;
+    this.status = TaskStatus.PENDING;
+}
     public Long getId() {
         return id;
     }
@@ -66,5 +69,21 @@ public class Task {
 
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 }
