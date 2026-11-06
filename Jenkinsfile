@@ -39,10 +39,10 @@ pipeline {
     }
 
     post {
-    success {
-        emailext(
-            subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """
+        success {
+            emailext(
+                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
 Hello,
 
 Your Task Management CI Pipeline completed successfully.
@@ -55,15 +55,15 @@ All pipeline stages completed successfully.
 
 Regards,
 Jenkins
-            """,
-            to: "yasaswinireddi@gmail.com"
-        )
-    }
+                """,
+                to: "yasaswinireddi@gmail.com"
+            )
+        }
 
-    failure {
-        emailext(
-            subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """
+        failure {
+            emailext(
+                subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
 Hello,
 
 Your Task Management CI Pipeline has failed.
@@ -76,12 +76,13 @@ Please check the Jenkins Console Output.
 
 Regards,
 Jenkins
-            """,
-            to: "yasaswinireddi@gmail.com"
-        )
-    }
+                """,
+                to: "yasaswinireddi@gmail.com"
+            )
+        }
 
-    always {
-        echo 'Pipeline execution finished.'
+        always {
+            echo 'Pipeline execution finished.'
+        }
     }
 }
